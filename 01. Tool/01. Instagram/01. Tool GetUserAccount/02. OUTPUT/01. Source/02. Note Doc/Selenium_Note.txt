@@ -1,0 +1,4 @@
+1. Các tag du?c dùng d? l?y d? li?u:
+Ch?c nang:
++ find_element: tìm 1 element => tr? v? 1 object tuong ?ng v?i element c?a webdriver
++ find_elements: tìm list các element => tr? v? list object 
