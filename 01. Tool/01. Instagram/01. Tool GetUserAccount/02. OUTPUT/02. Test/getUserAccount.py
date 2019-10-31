@@ -11,6 +11,7 @@ webdriver.get('https://www.instagram.com/accounts/login/?source=auth_switcher')
 sleep(3)
 
 username = webdriver.find_element_by_name('username')
+tagname = username.tag_name
 username.send_keys("quang_quoc")
 password = webdriver.find_element_by_name("password")
 password.send_keys("quoc@12345")
@@ -37,8 +38,39 @@ for hashtag in hashtag_list:
     tag += 1
     webdriver.get('https://www.instagram.com/explore/tags/'+ hashtag_list[tag] + '/')
     sleep(5)    
-    listElement = webdriver.find_elements_by_xpath('//*[@id="react-root"]/section/main/article/div[1]/div/div')  
-    first_thumbnail = webdriver.find_element_by_xpath('//*[@id="react-root"]/section/main/article/div[1]/div/div/div[1]/div[1]/a/div')
+    listRowTopPost = webdriver.find_elements_by_xpath('//*[@id="react-root"]/section/main/article/div[1]/div/div/div')
+    for r in range(1, len(listRowTopPost) + 1):
+        pathRow = '//*[@id="react-root"]/section/main/article/div[1]/div/div/div[' + str(r) + ']/div'
+        listItemInRow = webdriver.find_elements_by_xpath(pathRow)
+        for itemIndex in range(1, len(listItemInRow) + 1):
+            pathItem = pathRow + '[' + str(itemIndex) + ']/a/div'
+            item = webdriver.find_element_by_xpath(pathItem)
+            item.click()
+            sleep(randint(1, 2))
+            try:
+                pathLikeButton = "//section[contains(@class,'EDfFK ygqzn')]//button[1]"
+                elementLikeButton = webdriver.find_element_by_xpath(pathLikeButton)
+                elementLikeButton.click()
+                sleep(randint(1, 2))
+                pathCloseLike = "//button[contains(@class,'wpO6b')]//*[contains(@class,'_8-yf5')]"
+                closeLikeButton = webdriver.find_element_by_xpath(pathCloseLike)
+                closeLikeButton.click()
+                sleep(randint(1, 2))
+                pathClose = '/html/body/div[3]/button[1]'
+                closeButton = webdriver.find_element_by_xpath(pathClose)
+                closeButton.click()
+                sleep(randint(1, 2))
+                #likenumber = elementLikeButton
+            except:
+                pathClose = '/html/body/div[3]/button[1]'
+                closeButton = webdriver.find_element_by_xpath(pathClose)
+                closeButton.click()
+                sleep(randint(1, 2))
+                continue
+
+
+
+    first_thumbnail = webdriver.find_element_by_xpath('//*[@id="react-root"]/section/main/article/div[1]/div/div/div[1]/div[1]/a/div[1]')
     first_thumbnail.click()
     sleep(randint(1, 2))
     try:
