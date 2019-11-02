@@ -25,6 +25,7 @@ notnow.click()
 
 hashtag_list = ['tuicoi', 'depcoi']
 prev_user_list = []
+liked_user_list = []
 #prev_user_list = pandas.read_csv('_users_followed_list.csv', delimiter=',')
 #prev_user_list = list(prev_user_list['0'])
 
@@ -49,8 +50,22 @@ for hashtag in hashtag_list:
             sleep(randint(1, 2))
             try:
                 pathLikeButton = "//section[contains(@class,'EDfFK ygqzn')]//button[1]"
-                elementLikeButton = webdriver.find_element_by_xpath(pathLikeButton)
+                pathSpanLikeButton = "//section[contains(@class,'EDfFK ygqzn')]//button[1]/span"
+                elementSpanLikeButton = webdriver.find_element_by_xpath(pathSpanLikeButton)
+                numberOfUsersLiked = elementSpanLikeButton.text
+                elementLikeButton = webdriver.find_element_by_xpath(pathLikeButton)               
                 elementLikeButton.click()
+                likedUsers_Xpath = "//body/div[contains(@class,'')]/div[contains(@class,'')]/div[contains(@class,'')]/div/div/div"
+                likedUsers_Elements = webdriver.find_elements_by_xpath(likedUsers_Xpath)
+                for likedUserIndex in range(1, int(numberOfUsersLiked) + 1):
+                    try:
+                        userNamePath = "//body//div[contains(@class,'')]//div[contains(@class,'')]//div[contains(@class,'')]//div["+ str(likedUserIndex) +"]//div[2]//div[1]//div[1]//a[1]"
+                        userNameElement = webdriver.find_element_by_xpath(userNamePath)
+                        userName = userNameElement.get_attribute("title")
+                        liked_user_list.append(userName)
+                        sleep(randint(1, 2))
+                    except:
+                        continue
                 sleep(randint(1, 2))
                 pathCloseLike = "//button[contains(@class,'wpO6b')]//*[contains(@class,'_8-yf5')]"
                 closeLikeButton = webdriver.find_element_by_xpath(pathCloseLike)
