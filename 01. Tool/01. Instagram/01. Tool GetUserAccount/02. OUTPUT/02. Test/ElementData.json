@@ -1,0 +1,17 @@
+{
+    "post":
+    {
+        "likePost":
+        {
+            "pathLikeButton": "//section[contains(@class,'EDfFK ygqzn')]//button[1]",
+            "pathSpanLikeButton": "//section[contains(@class,'EDfFK ygqzn')]//button[1]/span",
+            "likedUsers_Xpath": "//body/div[contains(@class,'')]/div[contains(@class,'')]/div[contains(@class,'')]/div/div/div",
+            "userNamePath": "//body//div[contains(@class,'')]//div[contains(@class,'')]//div[contains(@class,'')]//div[",
+            "userNamePathBefore": "//body//div[contains(@class,'')]//div[contains(@class,'')]//div[contains(@class,'')]//div[",
+            "userNamePathAfter": "]//div[2]//div[1]//div[1]//a[1]",
+            "pathCloseLike": "//button[contains(@class,'wpO6b')]//*[contains(@class,'_8-yf5')]"
+        },
+        "pathClose": "/html/body/div[3]/button[1]"
+    }
+    
+}
