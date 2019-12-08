@@ -11,9 +11,9 @@ from selenium.webdriver.support import expected_conditions as EC
 def main():
  
     # Your Facebook account user and password
-    usr = "100022341281732"
-    pwd = "L4pF7chFY0Et"
-    message = "https://www.facebook.com/totokids.quanaotreem/posts/113499553458620"
+    usr = "vinhquang13531@gmail.com"
+    pwd = "Vinhquang_@13531"
+    message = "https://bom.to/xK4X2U"
     chromedriver_path = "E:/05. Software/Chrome/chromedriver.exe"
     #set multiple fb groups here
     group_links = [
@@ -41,13 +41,12 @@ def main():
     elem.send_keys(pwd)
     # Login
     elem.send_keys(Keys.RETURN)
-    sleep(60)
+    sleep(10)
  
     for group in group_links:
  
         # Go to the Facebook Group
         driver.get(group)
-        sleep(30)
  
         # Click the post box
         post_box=driver.find_element_by_xpath("//*[@name='xhpc_message_text'] ")
@@ -56,9 +55,12 @@ def main():
         post_box.send_keys(message)
  
         sleep(30)
-        button = driver.find_element_by_xpath("//button[@class='_1mf7 _4jy0 _4jy3 _4jy1 _51sy selected _42ft']")
-        button.click
-        sleep(300)
+        buttons = driver.find_elements_by_tag_name("button")
+        sleep(5)
+        for button in buttons:
+            if button.text == "Đăng":
+                button.click()
+                sleep(60)
  
     # driver.close()
  
